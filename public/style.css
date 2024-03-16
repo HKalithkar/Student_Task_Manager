@@ -14,7 +14,6 @@ body {
 .header {
     display: flex;
     flex-direction: column;
-    
 }
 
 .header1 {
@@ -125,4 +124,9 @@ h3 {
     justify-content: flex-end;
     align-items: center;
     gap: 10px;
+}
+
+footer {
+    text-align: center;
+    background-color: yellow;
 }

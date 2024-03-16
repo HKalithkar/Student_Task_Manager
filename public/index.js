@@ -1,13 +1,16 @@
-const today = new Date().toISOString().split('T')[0];
-document.querySelector("input#dueDate").min = today;
+const today = new Date().toISOString().split('T')[0];               //Today's date
+const year = new Date().getFullYear();                              //Current Year
+const addTask = document.querySelector("button.add");               //Add Task Button
+const newTask = document.querySelector(".newTask");                 //Add Task Form div
+const tasks = document.getElementById("tasks");                     //Tasks
+const forms = document.querySelectorAll("form");                    //All form elements
+const newTaskForm = document.querySelector(".newTask form");        //Add Task Form
+const newTaskSubmit = document.querySelector(".newTask button");    //Add Task Form Submit Button
+const fetchTaskForm = document.querySelector(".fetchTask form");    //Form to fetch asked CourseID tasks
+const fetchTaskSubmit = document.querySelector(".fetchTask button");//Submit button to fetch asked CourseID tasks
+const footerYear = document.querySelector("span.year");             //Footer span to dynamically change year
 
-const addTask = document.querySelector("button.add");
-const newTask = document.querySelector(".newTask");
-addTask.addEventListener("click", () => {
-    newTask.classList.toggle("hidden");
-});
-
-const tasks = document.getElementById("tasks");
+//Fetch all tasks from database and display in frontend
 
 fetch("http://localhost:3000/tasks")
 .then(res => res.json())
@@ -43,67 +46,28 @@ fetch("http://localhost:3000/tasks")
         `
         tasks.appendChild(newDiv);
     })
-})
+});
 
-function del(button) {
-    const taskDiv = button.parentNode.parentNode;
-    const taskName = taskDiv.querySelector("p").textContent;
-    fetch(`http://localhost:3000/tasks/del/${taskName}`, {
-        method: "DELETE"
-    });
-    location.reload();
-}
+//To toggle new task form 
 
-function status(button) {
-    const taskDiv = button.parentNode.parentNode;
-    const taskName = taskDiv.querySelector("p").textContent;
-    fetch(`http://localhost:3000/tasks/updateStatus/${taskName}`, {
-        method: "PATCH"
-    });
-    location.reload();
-}
+addTask.addEventListener("click", () => {
+    newTask.classList.toggle("hidden");
+});
 
-function showAll() {
-    location.reload();
-}
+//To prevent default of forms on submit
 
-function showComplete() {
-    const allTasks = document.querySelectorAll("#tasks > div");
-    console.log(allTasks.length);
-    for(let i=0; i<allTasks.length; i++) {
-        const currStatus = allTasks[i].querySelector(".status").textContent;
-        if(currStatus == "Completed") {
-            allTasks[i].classList.remove("hidden");
-        }
-        else {
-            allTasks[i].classList.add("hidden");
-        }
-    }
-}
-
-function showIncomplete() {
-    const allTasks = document.querySelectorAll("#tasks > div");
-    for(let i=0; i<allTasks.length; i++) {
-        const currStatus = allTasks[i].querySelector(".status").textContent;
-        console.log(currStatus);
-        if(currStatus == "Completed") {
-            allTasks[i].classList.add("hidden");
-        }
-        else {
-            allTasks[i].classList.remove("hidden");
-        }
-    }
-}
-
-const forms = document.querySelectorAll("form");
 for(let i=0; i<forms.length; i++) {
     forms[i].addEventListener("submit", (e) => {
         e.preventDefault();
-    })
+    });
 }
 
-const newTaskForm = document.querySelector(".newTask form");
-const newTaskSubmit = document.querySelector(".newTask button");
+//To make sure user doesn't select previous date when adding due date in new task form
+
+document.querySelector("input#dueDate").min = today;
+
+//Adding a new task
+
 newTaskForm.addEventListener("submit", () => {
     const newTask = {
         "courseId": parseInt(newTaskForm.querySelectorAll("input")[0].value.trim()),
@@ -120,10 +84,10 @@ newTaskForm.addEventListener("submit", () => {
         body: JSON.stringify(newTask)
     })
     location.reload();
-})
+});
 
-const fetchTaskForm = document.querySelector(".fetchTask form");
-const fetchTaskSubmit = document.querySelector(".fetchTask button");
+//To display tasks for the mentioned courseId only
+
 fetchTaskSubmit.addEventListener("click", () => {
     const allTasks = document.querySelectorAll("#tasks > div");
     const id = fetchTaskForm.querySelector("input").value.trim();
@@ -138,3 +102,67 @@ fetchTaskSubmit.addEventListener("click", () => {
     }
     fetchTaskForm.querySelector("input").value = "";
 })
+
+//To display all tasks
+
+function showAll() {
+    location.reload();
+}
+
+//To display all tasks whose status is true (completed tasks)
+
+function showComplete() {
+    const allTasks = document.querySelectorAll("#tasks > div");
+    console.log(allTasks.length);
+    for(let i=0; i<allTasks.length; i++) {
+        const currStatus = allTasks[i].querySelector(".status").textContent;
+        if(currStatus == "Completed") {
+            allTasks[i].classList.remove("hidden");
+        }
+        else {
+            allTasks[i].classList.add("hidden");
+        }
+    }
+}
+
+//To display all tasks whoste status is false (incomplete tasks)
+
+function showIncomplete() {
+    const allTasks = document.querySelectorAll("#tasks > div");
+    for(let i=0; i<allTasks.length; i++) {
+        const currStatus = allTasks[i].querySelector(".status").textContent;
+        console.log(currStatus);
+        if(currStatus == "Completed") {
+            allTasks[i].classList.add("hidden");
+        }
+        else {
+            allTasks[i].classList.remove("hidden");
+        }
+    }
+}
+
+//Delete function to delete a task
+
+function del(button) {
+    const taskDiv = button.parentNode.parentNode;
+    const taskName = taskDiv.querySelector("p").textContent;
+    fetch(`http://localhost:3000/tasks/del/${taskName}`, {
+        method: "DELETE"
+    });
+    location.reload();
+}
+
+//This function changes the status of task to either true or false
+
+function status(button) {
+    const taskDiv = button.parentNode.parentNode;
+    const taskName = taskDiv.querySelector("p").textContent;
+    fetch(`http://localhost:3000/tasks/updateStatus/${taskName}`, {
+        method: "PATCH"
+    });
+    location.reload();
+}
+
+//Dynamically changing year in footer
+
+footerYear.textContent = year;

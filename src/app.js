@@ -8,8 +8,8 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    
-})
+    res.send("<h1>Welcome to Student Task Manager</h1>");
+});
 
 app.get("/tasks", async (req, res) => {
     try {
