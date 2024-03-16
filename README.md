@@ -10,8 +10,8 @@
 
 3) **Then run the app.js file in src folder**
 
-    `cd src
-    node app`
+    ```cd src
+    node app```
 
 4) **Open index.html in public folder in browser**
 
