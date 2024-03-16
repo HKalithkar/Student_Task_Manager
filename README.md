@@ -2,11 +2,11 @@
 
 1) **Open Terminal and clone the repository**
 
-    `git clone https://github.com/HKalithkar/Student_Task_Manager.git`
+    ```git clone https://github.com/HKalithkar/Student_Task_Manager.git```
 
 2) **After cloning set current directory to Student_Task_Manager and install all dependencies (NodeJS and MongoDB needed)**
 
-    `npm install`
+    ```npm install```
 
 3) **Then run the app.js file in src folder**
 
