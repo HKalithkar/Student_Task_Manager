@@ -17,8 +17,8 @@ Steps to run
 
 5) You can now "Add Task", fetch particular files using "Show Tasks", "Show all tasks" to display all tasks, "Completed Tasks" and "Incomplete Tasks" to display only completed tasks or incomplete tasks
 
-![Screenshot1](https:github.com/HKalithkar/Student_Task_Manager/blob/main/screenshots/Screenshot-1.png)
-![Screenshot2](https:github.com/HKalithkar/Student_Task_Manager/blob/main/screenshots/Screenshot-2.png)
+![Screenshot1](https://github.com/HKalithkar/Student_Task_Manager/blob/main/screenshots/Screenshot-1.png)
+![Screenshot2](https://github.com/HKalithkar/Student_Task_Manager/blob/main/screenshots/Screenshot-2.png)
 
 6) To use sample data 
     copy JSON data from the following URL
@@ -26,4 +26,4 @@ Steps to run
     Open Postman and post request this data to the following URL
         http://localhost:3000/newTask
 
-![Screenshot3](https:github.com/HKalithkar/Student_Task_Manager/blob/main/screenshots/Screenshot-3.png)
+![Screenshot3](https://github.com/HKalithkar/Student_Task_Manager/blob/main/screenshots/Screenshot-3.png)
