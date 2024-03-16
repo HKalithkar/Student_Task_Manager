@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Anta&family=Macondo&family=Madimi+One&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Madimi One", sans-serif;
+}
+
+body {
+    background-color: #D1D7DC;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.header1 {
+    height: 50px;
+    text-align: center;
+    background-color: yellow;
+}
+
+.header2 {
+    height: 100px;
+    background-color: yellowgreen;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.fetchTask > form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+button {
+    background-color: green;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.newTask {
+    display: inline-block;
+    position: absolute;
+    background-color: yellowgreen;
+    top: 170px;
+    left: 20px;
+    border-radius: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.newTask div {
+    margin: 10px;
+}
+
+.newTask div label {
+    width: 200px;
+    display: inline-block;
+}
+
+.newTask div input, textarea, #id {
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+.submit {
+    padding: 10px;
+}
+
+.submit button {
+    display: block;
+    margin: auto;
+}
+
+.task-status {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+#tasks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#tasks > div {
+    margin: 20px;
+    padding: 20px;
+    width: 400px;
+    background-color: lightgreen;
+    border-radius: 20px;
+}
+
+#tasks > div > * {
+    padding: 5px 0;
+    text-align: justify;
+}
+
+h3 {
+    text-align: center !important;
+}
+
+
+#due {
+    text-align: end !important;
+    color: red;
+}
+
+.task-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
